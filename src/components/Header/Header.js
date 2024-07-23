@@ -29,9 +29,6 @@ const Header = ({
       <header className='header'>
           <div>
             <h1 className='title mt-3 me-3'>:Chat</h1>
-            {isLogged
-            ? <button className='btn btn-dark new-chat'> New chat</button>
-            : null}
           </div>
           {isLogged ? 
             <div>

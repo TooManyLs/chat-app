@@ -7,6 +7,8 @@
     > div {
         display: flex;
         flex-direction: column;
+        width: 300px;
+        text-align: center;
     }
     .inv-field{
         top: 1px;
@@ -22,6 +24,14 @@
     text-align: center;
     color: #212529;
     padding: 0 1em;
+}
+
+.new-chat::before{
+    content: "+ ";
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: -5px;
+    line-height: 1em;
 }
 
 @media (min-width: 1920px) {

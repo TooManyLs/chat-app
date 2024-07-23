@@ -35,14 +35,6 @@
     font-weight: 700;
 }
 
-.new-chat::before{
-    content: "+";
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: -5px;
-    line-height: 1em;
-}
-
 .inv-field{
     position: relative;
     font-size: 11px;
