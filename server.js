@@ -184,7 +184,9 @@ wss.on('connection', (ws, req) => {
     ws.on('close', () => {
         console.log(`Connection from ${addr} closed`);
         if (clients.get(ws)) {
+            if (clients.get(ws).channel) {
             command["leave-channel"](ws, null, null);
+            }
         }
         clients.delete(ws);
         console.log(mchan.members)
