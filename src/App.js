@@ -6,7 +6,7 @@ import Header from './components/Header/Header';
 import StartScreen from './components/StartScreen/StartScreen';
 import ChatboxHeader from './components/ChatboxHeader/ChatboxHeader';
 import MemberList from './components/MemberList/MemberList';
-
+import CreateModal from './components/CreateModal/CreateModal';
 
 
 function App() {
@@ -16,6 +16,8 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [showMemberList, setShowMemberList] = useState(false);
   const [members, setMembers] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
   
   const [socket, setSocket] = useState(null);
   
@@ -66,6 +68,7 @@ function App() {
           console.log(data.reason);
         }
         setChannel(data.channelName);
+        setShowModal(false);
       },
       "channel-leave": (data) => {
         setChannel(null);
@@ -73,6 +76,9 @@ function App() {
         setMembers([]);
         setMessages([]);
         console.log(data.reason ? data.reason : "You left the channel.")
+      },
+      "creation-failed": (_) => {
+        console.log("Channel creation failed.");
       },
       "get-members": (data) => {
         setMembers(data.members);
@@ -91,59 +97,68 @@ function App() {
     }
     
     return(
-      <div className='container'>
-      <Header
-        isLogged={isLogged}
-        setIsLogged={setIsLogged}
-        name={name}
-        setName={setName}
-        setChannel={setChannel}
-        setMessages={setMessages}
-        setShowMemberList={setShowMemberList}
-        setMembers={setMembers}
-        send_msg={send_msg}
-        />
-      <div className='chat-box'>
-        {isLogged 
-        ? <ChatboxHeader 
-            channel={channel} 
+      <>
+        {showModal && isLogged 
+        ? <CreateModal 
+            setShowModal={setShowModal} 
             send_msg={send_msg}
-            showMemberList={showMemberList}
-            setShowMemberList={setShowMemberList}
-            members={members}
-            name={name}
           /> 
         : null}
-        {channel && isLogged
-         ?<>
-            <div className='hybrid'>
-              <ChatRoom
-                messages={messages}
-                name = {name}
-              />       
-              {showMemberList 
-              ? <MemberList 
-                  members={members}
-                  name={name}
-                  channel={channel}
-                  send_msg={send_msg}
-                /> 
-              : null}
-            </div>
-            <ChatInputBox
-              displayMessage={displayMessage}
-              send_msg={send_msg}
-              name={name}
-              channel={channel}
-            />
-          </>
-         :<StartScreen
+        <div className='container'>
+          <Header
             isLogged={isLogged}
+            setIsLogged={setIsLogged}
+            name={name}
+            setName={setName}
+            setChannel={setChannel}
+            setMessages={setMessages}
+            setShowMemberList={setShowMemberList}
+            setMembers={setMembers}
             send_msg={send_msg}
           />
-        }
-      </div>
-    </div>
+          <div className='chat-box'>
+            {isLogged 
+            ? <ChatboxHeader 
+                channel={channel} 
+                send_msg={send_msg}
+                showMemberList={showMemberList}
+                setShowMemberList={setShowMemberList}
+                members={members}
+                name={name}
+              /> 
+            : null}
+            {channel && isLogged
+            ?<>
+                <div className='hybrid'>
+                  <ChatRoom
+                    messages={messages}
+                    name = {name}
+                  />       
+                  {showMemberList 
+                  ? <MemberList 
+                      members={members}
+                      name={name}
+                      channel={channel}
+                      send_msg={send_msg}
+                    /> 
+                  : null}
+                </div>
+                <ChatInputBox
+                  displayMessage={displayMessage}
+                  send_msg={send_msg}
+                  name={name}
+                  channel={channel}
+                />
+              </>
+            :<StartScreen
+                isLogged={isLogged}
+                send_msg={send_msg}
+                setShowModal={setShowModal}
+              />
+            }
+          </div>
+        </div>
+      </>
   );
 };
 
