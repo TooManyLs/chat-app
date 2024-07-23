@@ -1,0 +1,10 @@
+.ChatRoom {
+    background-color: #fff;
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    > :last-child{
+        margin-top: auto;
+    }
+}

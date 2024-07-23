@@ -1,0 +1,56 @@
+.MemberList {
+    overflow: auto;
+    background-color: #fff;
+    height: 100%;
+    border-left: 1px solid gray;
+    width: 300px;
+    padding: 5px 5px;
+}
+
+.member{
+    font-size: 0.9em;
+    padding: 0 6px;
+    margin-bottom: .25em;
+    img{
+        height: 1.25em;
+        margin-right: 5px;
+        margin-top: -5px;
+    }
+    &:hover > .kick{
+        visibility: visible;
+    }
+}
+
+.highlight{
+    background-color: rgba(0, 255, 0, .2);
+    border-radius: 6px;
+    &::after{
+        content: "Me";
+        float: right;
+        margin-right: 5px;
+    }
+}
+
+.kick {
+    height: 1.5em;
+    width: 1.5em;
+    background-color: #0000;
+    background-image: url(../../media/kick.png);
+    background-repeat: no-repeat;
+    background-size: 1.25em;
+    background-position-y: .125em;
+
+    border: none;
+    float: right;
+    visibility: hidden;
+}
+
+@media (max-width: 500px) {
+    .MemberList{
+        min-width: 100%;
+        border-left: none;
+    }
+    .member{
+        margin-bottom: .5em;
+    }
+}

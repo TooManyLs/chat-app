@@ -1,0 +1,65 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    > div{
+        display: flex;
+        align-items: center;
+    }
+    button{
+        height: 40px;
+        text-wrap: nowrap;
+    }
+}
+
+.username{
+    max-width: calc(100vw - 35em);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &::before{
+        content: "Hello, ";
+        font-weight: 400;
+    }
+    &::after{
+        content: "!";
+        font-weight: 400;
+    }
+}
+
+.title{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+}
+
+.new-chat::before{
+    content: "+";
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: -5px;
+    line-height: 1em;
+}
+
+.inv-field{
+    position: relative;
+    font-size: 11px;
+    margin-top: -17px;
+    top: 15px;
+    left: 10px;
+}
+
+@media (max-width: 780px) {
+    .header{
+        flex-direction: column;
+        margin-bottom: 13px;
+    }
+    .username{
+        max-width: calc(100vw - 10em);
+    }
+    .inv-field{
+        top: 16px;
+    }
+}

@@ -1,0 +1,61 @@
+
+.MessageItem {
+    --t: .7em; /* tail length */
+    --r: 10px;  /* radius */
+    background-color: rgb(226, 226, 226);
+    width: fit-content;
+    max-width: min(500px, 90%);
+    border-radius: var(--r);
+    margin: .3em .5em;
+    padding: .25em .5em;
+    position: relative;
+    border-inline: var(--t) solid #0000;
+    border-radius: calc(var(--r) + var(--t))/var(--r);
+    mask: 
+        radial-gradient(100% 100% at var(--_p) 0,#0000 99%,#000 102%) 
+        var(--_p) 100%/var(--t) var(--t) no-repeat,
+        linear-gradient(#000 0 0) padding-box;
+    &:nth-child(odd):not(.from-me){
+        background-color: rgb(207, 223, 223);
+    }
+}
+
+.msg-title{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: .25rem;
+    padding: 3px;
+    height: 20px;
+    border: none;
+    background-color: #0000;
+}
+
+.msg-content{
+    font-size: .8em;
+    font-family: inherit;
+    margin-bottom: 0;
+    white-space: no-wrap;
+    overflow: hidden;
+}
+
+
+/* tails for message bubbles */
+.from-them{
+    --_p: 0;
+    border-bottom-left-radius: 0 0;
+    place-self: start;
+}
+
+.from-me{
+    --_p: 100%;
+    border-bottom-right-radius: 0 0;
+    place-self: end;
+    background-color: rgb(29, 88, 252);
+    color: white;
+}
+
+@media (max-width: 430px) {
+    .msg-content{
+        font-size: .9em;
+    }
+}

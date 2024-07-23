@@ -1,0 +1,33 @@
+.StartScreen {
+    background-color: #fff;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > div {
+        display: flex;
+        flex-direction: column;
+    }
+    .inv-field{
+        top: 1px;
+    }
+}
+
+.huge-text{
+    font-size: 11vw;
+    line-height: 1em;
+    word-spacing: -.7vw;
+    letter-spacing: -.7vw;
+    font-weight: 700;
+    text-align: center;
+    color: #212529;
+    padding: 0 1em;
+}
+
+@media (min-width: 1920px) {
+    .huge-text{
+        font-size: 211.2px;
+        word-spacing: -13.5px;
+        letter-spacing: -13.5px;
+    }
+}
