@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './MemberList.css';
 import { v4 } from 'uuid';
 import userImg from '../../media/user.png'
@@ -14,7 +14,7 @@ const MemberList = ({members, name, channel, send_msg}) => {
     if (m.is_admin) {
       members.splice(i, 1);
       members.unshift(m);
-      ami_admin = m.name == name;
+      ami_admin = m.name === name;
     }
   });
 
@@ -26,12 +26,12 @@ const MemberList = ({members, name, channel, send_msg}) => {
   return (
     <div className="MemberList">
       {members.map((member, _) => 
-        <p key={v4()} className={'member' + (member.name == name ? ' highlight' : '')}>
+        <p key={v4()} className={'member' + (member.name === name ? ' highlight' : '')}>
           <img src={member.is_admin ? adminImg : userImg} alt="" />
           {member.name}
           {ami_admin 
           ?
-          (member.name != name
+          (member.name !== name
           ? <button onClick={kick} className="kick">
             </button>
           : null)

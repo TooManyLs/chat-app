@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import './ChatInputBox.css';
-import MessageItem from '../MessageItem/MessageItem';
 
 const ChatInputBox = ({displayMessage, send_msg, name, channel}) => {
 

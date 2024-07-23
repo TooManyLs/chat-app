@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Header.css';
 
 const Header = ({
@@ -6,7 +6,7 @@ const Header = ({
   setMessages, setShowMemberList, setMembers, send_msg}) => {
   
   const [reason, setReason] = useState("Enter a username")
-
+    
   const logIn = () => {
     let input = document.querySelector("#username-input");
     let username = input.value.trim();
