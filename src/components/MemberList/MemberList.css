@@ -7,6 +7,17 @@
     padding: 5px 5px;
 }
 
+.channel-name {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+    padding-bottom: 0.25em;
+    border-bottom: 1px dashed gray;
+    &::before{
+        content: "Channel: ";
+        font-weight: normal;
+    }
+}
+
 .member{
     font-size: 0.9em;
     padding: 0 6px;

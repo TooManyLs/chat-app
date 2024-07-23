@@ -25,6 +25,7 @@ const MemberList = ({members, name, channel, send_msg}) => {
 
   return (
     <div className="MemberList">
+      <p className='channel-name'>{channel}</p>
       {members.map((member, _) => 
         <p key={v4()} className={'member' + (member.name === name ? ' highlight' : '')}>
           <img src={member.is_admin ? adminImg : userImg} alt="" />
