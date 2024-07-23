@@ -46,14 +46,8 @@ class Channel {
     }
 }
 
-let mchan = new Channel("hello", "me");
-let nchan = new Channel("byebye", "tmls");
-
 let clients = new Map();
-let channels = {
-    "hello": mchan,
-    "byebye": nchan,
-};
+let channels = {};
 
 const server = http.createServer((req, res) => {
     
@@ -130,14 +124,40 @@ const command = {
         console.log(`${addr} authenticated as ${data.name}`);
     },
     "leave-channel": (ws, _, _1) => {
-        send_msg(ws, {type: "channel-leave"})
         let user = clients.get(ws);
         let chan = channels[user.channel];
-        chan.kick(user.name);
-
-        sendMemberList(chan);
         
-        user.channel = null;
+        if (user.name === chan.admin) {
+            let members = Object.keys(chan.members);
+            let channelName = user.channel;
+            members.forEach((member, i) => {
+                command["kick"](ws, null, 
+                    {type: "kick", 
+                        channelName: chan.name, 
+                        username: member
+                    }
+                )
+            });
+            delete channels[channelName];
+        } else {
+            send_msg(ws, {type: "channel-leave"})
+            chan.kick(user.name);
+    
+            sendMemberList(chan);
+            
+            user.channel = null;
+        }
+    },
+    "create-channel": (ws, _, data) => {
+        let name = data.channelName;
+        let admin = clients.get(ws).name;
+        if (channels[name]) {
+            send_msg(ws, {type: "creation-failed"});
+            return;
+        }
+        channels[name] = new Channel(name, admin);
+        command["connect"](ws, _, {type: "connect", channelName: name});
+        console.log(Object.keys(channels));
     },
     "kick": (ws, _, data) => {
         let chan = channels[data.channelName]
@@ -189,6 +209,5 @@ wss.on('connection', (ws, req) => {
             }
         }
         clients.delete(ws);
-        console.log(mchan.members)
       });
 });
