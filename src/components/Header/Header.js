@@ -4,13 +4,21 @@ import './Header.css';
 const Header = ({
   isLogged, setIsLogged, name, setName, setChannel, 
   setMessages, setShowMemberList, setMembers, send_msg}) => {
+  
+  const [reason, setReason] = useState("Enter a username")
 
   const logIn = () => {
     let input = document.querySelector("#username-input");
     let username = input.value.trim();
-    if (username == "") {
+    let inv = input.classList[1];
+    if (!inv) {
+      input.className += " is-invalid";
+    }
+    if (username === "") {
+      setReason("Enter a username");
       return;
     }
+    setReason("This username is already in use.");
     send_msg({type: "auth", name: username});
   }
 
@@ -47,7 +55,7 @@ const Header = ({
                   id="username-input"
                 />
                 <label className='invalid-feedback small inv-field' htmlFor="username-input">
-                  This username is already in use.
+                  {reason}
                 </label>
               </div>
               <button onClick={logIn} className='btn btn-dark px-4'>Log in</button>

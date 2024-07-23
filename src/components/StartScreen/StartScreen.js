@@ -3,19 +3,19 @@ import './StartScreen.css';
 
 const StartScreen = ({isLogged, send_msg}) => {
 
-  const [empty, setEmpty] = useState(true)
+  let [reason, setReason] = useState("Please enter channel name.");
 
   const connect = () => {
     let input = document.querySelector("#channel-input");
     let inv = input.classList[2];
-    if (inv) {
-      input.classList.remove(inv);
+    if (!inv) {
+      input.className += " is-invalid";
     }
     if (!input.value) {
-      setEmpty(true)
-      input.className += " is-invalid";
+      setReason("Please enter channel name.");
       return;
     }
+    setReason("There is no channel with that name.");
     send_msg({type: "connect", channelName: input.value})
   }
 
@@ -27,7 +27,7 @@ const StartScreen = ({isLogged, send_msg}) => {
           <p className='fs-5 pb-3'>Connect to an existing channel:</p>
           <input className='form-control mb-3' id="channel-input" type="text" />
           <label className='invalid-feedback small inv-field' htmlFor="channel-input">
-                   {empty ? "Please enter channel name." : "There is no channel with that name."}
+                   {reason}
           </label>
           <button onClick={connect} className='btn btn-dark'>Connect</button>
           <p className='fs-5 pt-3'>
