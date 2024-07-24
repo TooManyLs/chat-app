@@ -1,24 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './Header.css';
 
-const Header = ({
-  isLogged, setIsLogged, name, setName, setChannel, 
-  setMessages, setShowMemberList, setMembers, send_msg}) => {
-  
+const Header = ({isLogged, setIsLogged, name, setName, send_msg}) => {
+
   const [reason, setReason] = useState("Enter a username")
-    
+
   const logIn = () => {
     let input = document.querySelector("#username-input");
     let username = input.value.trim();
+
     let inv = input.classList[1];
     if (!inv) {
       input.className += " is-invalid";
     }
+
     if (username === "") {
       setReason("Enter a username");
       return;
     }
     setReason("This username is already in use.");
+
     send_msg({type: "auth", name: username});
   }
 
@@ -26,10 +27,6 @@ const Header = ({
     send_msg({type: "logout"});
     setIsLogged(false);
     setName("");
-    setChannel(null);
-    setMessages([]);
-    setShowMemberList(false);
-    setMembers([]);
   }
 
   return (
