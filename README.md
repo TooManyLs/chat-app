@@ -34,3 +34,13 @@ to create your channel:
 This is the "Members" panel here you can check member list of the channel, copy channel's name to share it with your buddies and kick unwanted people (if you're an admin of course).
 #### To leave the channel press the button on the top left. 
 Now you can choose another channel to sneak in.
+
+## Note
+By default client connects to localhost so if you want to connect to remote server in the root directory of chat-app go to src/App.js and change the line that says:
+```
+const socket = new WebSocket('ws://localhost:8080');
+```
+to 
+```
+const socket = new WebSocket('ws://[IP address of the server]:8080');
+```
