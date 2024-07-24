@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Chat-app
+Chat-app is a websocket based real-time chat application built with Node.js on the server-side an React.js on the front-end.
+## Start chatting with Chat-app
+- Go to root directory, open terminal and run ```npm i``` to install all dependencies.
+- Start the server.
+```
+node server.js 
+```
+- Start client-side.
+```
+npm start
+```
+Now you can log in, create your channel or connect to an existing one and start chatting!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+to create your channel:
+1. Log in, you'll be greeted with channel selection panel.
 
-## Available Scripts
+![image](https://github.com/user-attachments/assets/04c6e3fb-b19b-40cb-af8e-373c3250df1b)
 
-In the project directory, you can run:
+2. Press "+ Create" button.
 
-### `npm start`
+![image](https://github.com/user-attachments/assets/2eb0afe6-557a-4f31-a995-44c98b338bf8)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Choose a cool name for you channel or if you lack creativity leave the input field empty, it'll generate unique name automatically.
+4. Press "Create channel" button.
+5. Voila! You now have your own channel!
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![image](https://github.com/user-attachments/assets/b36f5276-bc2d-498c-b08c-5401d1e94b92)
 
-### `npm test`
+#### Press the button on the upper-right corner.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](https://github.com/user-attachments/assets/1e517c61-7f65-4dad-8235-3e03eaaaf47e)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This is the "Members" panel here you can check member list of the channel, copy channel's name to share it with your buddies and kick unwanted people (if you're an admin of course).
+#### To leave the channel press the button on the top left. 
+Now you can choose another channel to sneak in.
