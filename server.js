@@ -84,6 +84,7 @@ wss.on('connection', (ws, req) => {
         }
         command["leave-channel"](ws, null, null);
         clients.delete(ws);
+        sendUserList();
     });
 });
 
@@ -121,6 +122,7 @@ const command = {
             command["leave-channel"](ws, null, null);
         }
         clients.delete(ws);
+        sendUserList();
     },
     "auth": (ws, addr, data) => {
         if (mapContainsValue(clients, "name", data.name)) {
@@ -130,6 +132,7 @@ const command = {
         clients.set(ws, {"name": data.name, "channel": null});
         send_msg(ws, {type: "login", success: true, name: data.name});
         console.log(`${addr} authenticated as ${data.name}`);
+        sendUserList();
     },
     "leave-channel": (ws, _, _1) => {
         let user = clients.get(ws);
@@ -223,4 +226,15 @@ const sendMemberList = (channel) => {
     for (let sock of sockets) {
         send_msg(sock, {type: "get-members", members: memberList});
     }
+}
+
+const sendUserList = () => {
+    let sockets = clients.keys();
+        let userList = [];
+        for (val of clients.values()) {
+            userList.push(val["name"]);
+        }
+        for (sock of sockets) {
+            send_msg(sock, {type: "get-users", users: userList});
+        }
 }

@@ -7,6 +7,7 @@ import StartScreen from './components/StartScreen/StartScreen';
 import ChatboxHeader from './components/ChatboxHeader/ChatboxHeader';
 import MemberList from './components/MemberList/MemberList';
 import CreateModal from './components/CreateModal/CreateModal';
+import dataset from './users.json';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [showMemberList, setShowMemberList] = useState(false);
   const [members, setMembers] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   
@@ -85,6 +87,13 @@ function App() {
       "get-members": (data) => {
         setMembers(data.members);
       },
+      "get-users": (data) => {
+        let testUsers = [...data.users];
+        for (let usr of dataset) {
+          testUsers.push(usr.name);
+        }
+        setUsers(testUsers);
+      },
       "msg": (data) => {
         displayMessage({author: data.author, content: data.content});
       }
@@ -121,7 +130,7 @@ function App() {
                 send_msg={send_msg}
                 showMemberList={showMemberList}
                 setShowMemberList={setShowMemberList}
-                members={members}
+                users={users}
                 name={name}
               /> 
             : null}
