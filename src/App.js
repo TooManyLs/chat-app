@@ -21,6 +21,8 @@ function App() {
   
   const [socket, setSocket] = useState(null);
   
+
+  // Connecting to websocket server.
   useEffect(() => {
     const socket = new WebSocket('ws://localhost:8080');
     
@@ -37,8 +39,9 @@ function App() {
         return;
       }
         
-        command[data.type](data);
-      });
+      // Calls function depending on type property of data object
+      command[data.type](data);
+    });
       
       setSocket(socket);
       
@@ -57,7 +60,6 @@ function App() {
           setName(data.name);
         } else {
           let input = document.querySelector("#username-input");
-          input.style.border = "1px solid red";
           input.value = "";
           input.className += " is-invalid";
           console.log('Login failed');
@@ -110,10 +112,6 @@ function App() {
             setIsLogged={setIsLogged}
             name={name}
             setName={setName}
-            setChannel={setChannel}
-            setMessages={setMessages}
-            setShowMemberList={setShowMemberList}
-            setMembers={setMembers}
             send_msg={send_msg}
           />
           <div className='chat-box'>

@@ -3,6 +3,7 @@ import './ChatInputBox.css';
 
 const ChatInputBox = ({displayMessage, send_msg, name, channel}) => {
 
+  // Bind enter key to the send button
   useEffect(() => {
     let input = document.querySelector(".input-box");
 

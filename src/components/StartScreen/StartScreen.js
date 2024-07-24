@@ -7,15 +7,18 @@ const StartScreen = ({isLogged, send_msg, setShowModal}) => {
 
   const connect = () => {
     let input = document.querySelector("#channel-input");
+
     let inv = input.classList[2];
     if (!inv) {
       input.className += " is-invalid";
     }
+
     if (!input.value) {
       setReason("Please enter channel name.");
       return;
     }
     setReason("There is no channel with that name.");
+
     send_msg({type: "connect", channelName: input.value})
   }
 
